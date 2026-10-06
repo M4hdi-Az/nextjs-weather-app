@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* انیمیشن حرکت ابر به بالا و پایین (یا افقی) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-40px) scale(1.1); /* میزان جابه‌جایی بیشتر شد */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* انیمیشن حرکت افقی ابرها (از چپ به راست) */
+@keyframes cloud-move {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(110vw);
+  }
+}
+
+/* سرعت‌های مختلف برای ابرها */
+.animate-cloud-fast {
+  animation: cloud-move 12s linear infinite; /* بسیار سریع */
+}
+
+.animate-cloud-medium {
+  animation: cloud-move 30s linear infinite; /* سرعت متوسط */
+}
+
+.animate-cloud-slow {
+  animation: float 4s ease-in-out infinite; /* شناور شدن سریع در جای خود */
 }
