@@ -3,11 +3,12 @@ import { useCitySearch } from "@/hooks/useCitySearch";
 import AnimatedBackground from "./AnimatedBackground";
 import PopularCitiesIcon from "./PopularCitiesIcon";
 import CitySuggestions from "./CitySuggestions";
+import { useWeather } from "@/hooks/useWeather";
 
 const WeatherSearch = () => {
 
-  const {searchInput, searchInputHandler, suggestedCities} = useCitySearch();
-
+  const {searchInput, searchInputHandler, suggestedCities, clearSuggestedCities} = useCitySearch();
+  const {getWeather, weatherData} = useWeather()
   return (
     <>
       <AnimatedBackground />
@@ -27,7 +28,7 @@ const WeatherSearch = () => {
           <div className="flex justify-center items-center bg-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
             <span className="text-white">find me</span>
           </div>
-          {suggestedCities.length && <CitySuggestions cities={suggestedCities}/>}
+          {suggestedCities.length && <CitySuggestions getWeather={getWeather} cities={suggestedCities} clearSuggestedCities={clearSuggestedCities} />}
         </div>
         <div className="flex gap-5 w-50%">
           <PopularCitiesIcon />

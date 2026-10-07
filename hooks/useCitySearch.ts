@@ -28,5 +28,9 @@ export function useCitySearch() {
     setSearchInput(value)
   }
 
-  return {searchInputHandler, suggestedCities, searchInput}
+  const clearSuggestedCities = () => {
+    setSuggestedCities([])
+  }
+
+  return {searchInputHandler, suggestedCities, searchInput, clearSuggestedCities}
 }
