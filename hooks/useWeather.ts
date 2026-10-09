@@ -1,3 +1,4 @@
+'use client'
 import { fetchWeatherData } from "@/services/weather";
 import { WeatherData } from "@/types/weather";
 import { useState } from "react";

@@ -34,13 +34,16 @@ export const fetchWeatherData = async (lat: number, lon: number) => {
       "sunset",
       "uv_index_max",
     ].join(","),
+    wind_speed_unit: "kmh", // 👈 اضافه شد: تضمین دریافت سرعت باد بر حسب km/h
     timezone: "auto",
   });
 
   const res = await fetch(
     `https://api.open-meteo.com/v1/forecast?${params.toString()}`,
   );
+  
   if (!res.ok) throw new Error("Failed to fetch weather data");
+  
   const data = await res.json();
   return data;
 };

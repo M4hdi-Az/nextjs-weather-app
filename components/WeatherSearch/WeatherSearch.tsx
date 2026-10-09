@@ -1,14 +1,22 @@
-"use client"
-import { useCitySearch } from "@/hooks/useCitySearch";
+"use client";
 import AnimatedBackground from "./AnimatedBackground";
 import PopularCitiesIcon from "./PopularCitiesIcon";
 import CitySuggestions from "./CitySuggestions";
-import { useWeather } from "@/hooks/useWeather";
+import { City } from "@/types/weather";
 
-const WeatherSearch = () => {
-
-  const {searchInput, searchInputHandler, suggestedCities, clearSuggestedCities} = useCitySearch();
-  const {getWeather, weatherData} = useWeather()
+const WeatherSearch = ({
+  searchInput,
+  searchInputHandler,
+  suggestedCities,
+  getWeather,
+  clearSuggestedCities,
+}: {
+  searchInput: string;
+  searchInputHandler: (value: string) => void;
+  suggestedCities: City[];
+  getWeather: (lat: number, lon: number) => Promise<void>;
+  clearSuggestedCities: () => void;
+}) => {
   return (
     <>
       <AnimatedBackground />
@@ -21,14 +29,22 @@ const WeatherSearch = () => {
             className="absolute w-full h-14 bg-white/80 backdrop-blur-md text-2xl pl-2 rounded-2xl border border-blue-800 outline-0"
             type="text"
             placeholder="Search city..."
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => searchInputHandler(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              searchInputHandler(e.target.value)
+            }
             value={searchInput}
           />
-          
+
           <div className="flex justify-center items-center bg-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
             <span className="text-white">find me</span>
           </div>
-          {suggestedCities.length && <CitySuggestions getWeather={getWeather} cities={suggestedCities} clearSuggestedCities={clearSuggestedCities} />}
+          {suggestedCities.length && (
+            <CitySuggestions
+              getWeather={getWeather}
+              cities={suggestedCities}
+              clearSuggestedCities={clearSuggestedCities}
+            />
+          )}
         </div>
         <div className="flex gap-5 w-50%">
           <PopularCitiesIcon />
