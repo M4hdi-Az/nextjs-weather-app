@@ -49,3 +49,9 @@ export type WeatherData = {
 };
 
 export type GetWeatherFn = (lat: number, lon: number) => Promise<void>;
+
+export type HourlyData = {
+  time: string[];
+  temperature_2m: number[];
+  precipitation_probability: number[];
+};

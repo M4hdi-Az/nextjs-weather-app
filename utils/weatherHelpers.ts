@@ -1,3 +1,5 @@
+import { HourlyData } from "@/types/weather";
+
 export const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n));
 
@@ -53,3 +55,22 @@ export function rateVisibility(km: number) {
   if (km < 20) return { level: 4, label: "Good" };
   return { level: 5, label: "Excellent" };
 }
+
+export const formattedHourlyData = (hourlyData: HourlyData) => {
+
+  const todayStr = new Date().toISOString().split("T")[0];
+  return hourlyData.time
+    .map((timeString: string, index: number) => {
+      return {
+        fullTime: timeString,
+        time: new Date(timeString).toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+        temp: Math.round(hourlyData.temperature_2m[index]),
+        precipitation: hourlyData.precipitation_probability[index],
+      };
+    })
+    .filter((item) => item.fullTime.startsWith(todayStr));
+};
