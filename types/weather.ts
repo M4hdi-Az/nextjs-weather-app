@@ -55,3 +55,10 @@ export type HourlyData = {
   temperature_2m: number[];
   precipitation_probability: number[];
 };
+
+export type DailyData = {
+  time: string[];
+  weather_code: number[];
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+};

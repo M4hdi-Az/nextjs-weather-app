@@ -1,4 +1,4 @@
-import { HourlyData } from "@/types/weather";
+import { DailyData, HourlyData } from "@/types/weather";
 
 export const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n));
@@ -74,3 +74,20 @@ export const formattedHourlyData = (hourlyData: HourlyData) => {
     })
     .filter((item) => item.fullTime.startsWith(todayStr));
 };
+
+export const formatDailyForecast = (dailyData : DailyData) => {
+ return dailyData.time.map((timeString: string, index: number) => {
+    const date = new Date(timeString);
+    const dayName = date.toLocaleDateString("en-US",{weekday: "short"});
+
+    const isTody= index === 0;
+
+    return {
+      date: timeString,
+      day: isTody ? 'today' : dayName,
+      minTemp: dailyData.temperature_2m_min[index],
+      maxTemp: dailyData.temperature_2m_max[index],
+      code: dailyData.weather_code[index]
+    }
+  }) 
+}

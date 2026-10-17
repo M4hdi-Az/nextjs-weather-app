@@ -19,10 +19,10 @@ export default function HourlyForecast({
   weatherData: WeatherData;
 }) {
   const { hourly } = weatherData;
-  const hourlyData = formattedHourlyData(hourly)
+  const hourlyData = formattedHourlyData(hourly);
 
   return (
-    <div className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mx-auto shadow-lg shadow-sky-500/10">
+    <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mb-48 mx-auto shadow-lg shadow-sky-500/10">
       <h3 className="text-lg font-medium text-slate-600 mb-4">
         Hourly Forecast
       </h3>
@@ -48,7 +48,7 @@ export default function HourlyForecast({
               fontSize={12}
             />
 
-            <Tooltip content={<CustomTooltip/>}/>
+            <Tooltip content={<CustomTooltip />} />
 
             <Line
               yAxisId="temp"
@@ -77,6 +77,6 @@ export default function HourlyForecast({
           </LineChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </section>
   );
 }
