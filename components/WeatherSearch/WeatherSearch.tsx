@@ -1,8 +1,9 @@
 "use client";
 import AnimatedBackground from "./AnimatedBackground";
-import PopularCitiesIcon from "./PopularCitiesIcon";
+import PopularCitiesIcon from "./RecentSearchs";
 import CitySuggestions from "./CitySuggestions";
-import { City } from "@/types/weather";
+import { City, CitySearch } from "@/types/weather";
+import RecentSearchs from "./RecentSearchs";
 
 const WeatherSearch = ({
   searchInput,
@@ -10,12 +11,16 @@ const WeatherSearch = ({
   suggestedCities,
   getWeather,
   clearSuggestedCities,
+  recentSearches,
+  addSearch
 }: {
   searchInput: string;
   searchInputHandler: (value: string) => void;
   suggestedCities: City[];
   getWeather: (lat: number, lon: number) => Promise<void>;
   clearSuggestedCities: () => void;
+  recentSearches: CitySearch[];
+  addSearch : (name: string, lat: number | string, lon: number | string) => void;
 }) => {
   return (
     <>
@@ -43,15 +48,12 @@ const WeatherSearch = ({
               getWeather={getWeather}
               cities={suggestedCities}
               clearSuggestedCities={clearSuggestedCities}
+              addSearch={addSearch}
             />
           )}
         </div>
         <div className="flex gap-5 w-50%">
-          <PopularCitiesIcon />
-          <PopularCitiesIcon />
-          <PopularCitiesIcon />
-          <PopularCitiesIcon />
-          <PopularCitiesIcon />
+          {recentSearches.map(item => <RecentSearchs key={item.name} getWeather={getWeather} {...item}/>)}         
         </div>
         <h3 className="text-blue-900/80 text-2xl">
           Enter a city name or use your location to get live updates.

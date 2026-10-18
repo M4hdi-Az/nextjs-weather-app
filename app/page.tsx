@@ -2,6 +2,7 @@
 import WeatherDashboard from "@/components/WeatherDashboard/WeatherDashboard";
 import WeatherSearch from "@/components/WeatherSearch/WeatherSearch";
 import { useCitySearch } from "@/hooks/useCitySearch";
+import { useRecentSearches } from "@/hooks/useRecentSearches";
 import { useWeather } from "@/hooks/useWeather";
 
 function page() {
@@ -13,6 +14,8 @@ function page() {
   } = useCitySearch();
   const { getWeather, weatherData } = useWeather();
 
+  const { recentSearches, addSearch } = useRecentSearches();
+console.log(recentSearches)
   return (
     <>
       <WeatherSearch
@@ -21,6 +24,8 @@ function page() {
         suggestedCities={suggestedCities}
         getWeather={getWeather}
         clearSuggestedCities={clearSuggestedCities}
+        recentSearches={recentSearches}
+        addSearch={addSearch}
       />
       {weatherData && <WeatherDashboard weatherData={weatherData} />}
     </>

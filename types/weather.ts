@@ -64,3 +64,9 @@ export type DailyData = {
   temperature_2m_max: number[];
   temperature_2m_min: number[];
 };
+
+export interface CitySearch {
+  name: string;
+  lat: number;
+  lon: number;
+}
