@@ -23,6 +23,7 @@ export type CurrentWeather = {
   wind_direction_10m: number;
   surface_pressure: number;
   visibility: number;
+  dew_point_2m: number;
 };
 
 export type HourlyWeather = {
@@ -40,6 +41,7 @@ export type DailyWeather = {
   sunrise: string[];
   sunset: string[];
   uv_index_max: number[];
+  precipitation_sum: number[]
 };
 
 export type WeatherData = {

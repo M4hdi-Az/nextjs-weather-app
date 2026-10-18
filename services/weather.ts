@@ -20,6 +20,7 @@ export const fetchWeatherData = async (lat: number, lon: number) => {
       "wind_direction_10m",
       "surface_pressure",
       "visibility",
+      "dew_point_2m"
     ].join(","),
     hourly: [
       "temperature_2m",
@@ -33,6 +34,7 @@ export const fetchWeatherData = async (lat: number, lon: number) => {
       "sunrise",
       "sunset",
       "uv_index_max",
+      "precipitation_sum"
     ].join(","),
     wind_speed_unit: "kmh", // 👈 اضافه شد: تضمین دریافت سرعت باد بر حسب km/h
     timezone: "auto",

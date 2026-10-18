@@ -91,3 +91,114 @@ export const formatDailyForecast = (dailyData : DailyData) => {
     }
   }) 
 }
+
+const calculateDayProgress = (sunriseIso: string, sunsetIso: string, currentTimeIso: string) => {
+  if (!sunriseIso || !sunsetIso) return 50;
+  
+  const now = currentTimeIso ? new Date(currentTimeIso).getTime() : new Date().getTime()
+  const sunrise = new Date(sunriseIso).getTime();
+  const sunset = new Date(sunsetIso).getTime();
+
+  if (now <= sunrise) return 0;
+  if (now >= sunset) return 100;
+
+  const totalDaylight = sunset - sunrise;
+  const elapsed = now - sunrise;
+  
+  return Math.min(Math.max(Math.round((elapsed / totalDaylight) * 100), 0), 100);
+};
+
+const formatTime = (isoString: string) => {
+  if (!isoString) return "00:00";
+  return isoString.split("T")[1].substring(0, 5);
+};
+
+export const processWeatherData = (rawData: any) => {
+  const daily = rawData.daily;
+  const current = rawData.current; // 👈 نقطه شبنم از اینجا خوانده می‌شود
+
+  // ۱. طلوع و غروب (اندیس 0 مربوط به روز جاری است)
+  const sunriseIso = daily?.sunrise ? daily.sunrise[0] : "";
+  const sunsetIso = daily?.sunset ? daily.sunset[0] : "";
+  const sunrise = formatTime(sunriseIso);
+  const sunset = formatTime(sunsetIso);
+  const currentTimeIso = current?.time ? current.time : "";
+  const dayProgress = calculateDayProgress(sunriseIso, sunsetIso, currentTimeIso);
+
+  // ۲. شاخص UV (بیشترین مقدار روزانه)
+  const uvIndex = daily?.uv_index_max ? daily.uv_index_max[0] : 0;
+
+  // ۳. نقطه شبنم لحظه‌ای (از بخش current)
+  const dewPoint = current?.dew_point_2m !== undefined ? current.dew_point_2m : 0;
+
+  // ۴. مجموع بارش روزانه
+  const precipitation = daily?.precipitation_sum ? daily.precipitation_sum[0] : 0;
+
+  return {
+    sunrise,
+    sunset,
+    dayProgress,
+    uvIndex,
+    dewPoint,
+    precipitation,
+  };
+};
+
+export const getUvInfo = (val: number) => {
+    if (val < 3)
+      return {
+        label: "Low",
+        note: "No protection needed.",
+        color: "bg-emerald-500/15 text-emerald-800",
+      };
+    if (val < 6)
+      return {
+        label: "Moderate",
+        note: "Wear sunscreen if outside.",
+        color: "bg-amber-400/25 text-amber-900",
+      };
+    if (val < 8)
+      return {
+        label: "High",
+        note: "Use SPF 30+ and find shade.",
+        color: "bg-orange-500/15 text-orange-900",
+      };
+    return {
+      label: "Very high",
+      note: "Limit midday sun.",
+      color: "bg-red-500/15 text-red-900",
+    };
+  };
+
+  export const getDewPointInfo = (val: number) => {
+    if (val < 10)
+      return {
+        label: "Dry",
+        note: "Crisp and dry air.",
+        color: "bg-cyan-500/15 text-cyan-900",
+      };
+    if (val < 16)
+      return {
+        label: "Comfortable",
+        note: "Pleasant air, nothing sticky.",
+        color: "bg-emerald-500/15 text-emerald-800",
+      };
+    if (val < 20)
+      return {
+        label: "Humid",
+        note: "A little sticky in the sun.",
+        color: "bg-amber-400/25 text-amber-900",
+      };
+    return {
+      label: "Muggy",
+      note: "Heavy and sticky air.",
+      color: "bg-rose-500/15 text-rose-900",
+    };
+  };
+
+export  const getRainInfo = (val: number) => {
+    if (val < 0.1) return { label: "No rain", note: "A dry day." };
+    if (val < 5)
+      return { label: "Light rain", note: "Light showers expected." };
+    return { label: "Moderate rain", note: "Steady rain. Take an umbrella." };
+  };
