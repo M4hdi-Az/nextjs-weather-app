@@ -1,15 +1,12 @@
-import { City, CitySearch, GetWeatherFn } from "@/types/weather";
+import { useWeatherStore } from "@/store/useWeatherStore";
+import {City} from "@/types/weather";
 
-const CitySuggestionItem = (
-  {
-    city,
-    getWeather,
-    clearSuggestedCities,
-    addSearch,
-  }: { city: City; getWeather: GetWeatherFn; clearSuggestedCities: () => void ,
-  addSearch: (name: string, lat: number | string, lon: number | string) => void,},
- 
-) => {
+const CitySuggestionItem = ({city} : {city: City}) => {
+
+   const getWeather = useWeatherStore((state) => state.getWeather);
+   const addSearch = useWeatherStore((state) => state.addSearch);
+   const clearSuggestedCities = useWeatherStore((state) => state.clearSuggestedCities);
+
   const handelSelectedCity = (city: City) => {
     getWeather(city.latitude, city.longitude);
     clearSuggestedCities();

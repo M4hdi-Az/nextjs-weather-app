@@ -1,6 +1,5 @@
 import {
-  CurrentWeather as CurrentWeatherData,
-  WeatherData,
+  CurrentWeather as CurrentWeatherData
 } from "@/types/weather";
 import { Thermometer, Wind, Droplets, Gauge, Eye } from "lucide-react";
 import Compass from "./Compass";
@@ -21,8 +20,12 @@ import {
   describePressure,
   rateVisibility,
 } from "@/utils/weatherHelpers";
+import { useWeatherStore } from "@/store/useWeatherStore";
 
-const CurrentWeather = ({ weatherData }: { weatherData: WeatherData }) => {
+const CurrentWeather = () => {
+
+  const weatherData = useWeatherStore((state) => state.weatherData)
+
   const {
     apparent_temperature,
     is_day,
@@ -33,7 +36,7 @@ const CurrentWeather = ({ weatherData }: { weatherData: WeatherData }) => {
     weather_code,
     wind_direction_10m,
     wind_speed_10m,
-  }: CurrentWeatherData = weatherData.current;
+  }: CurrentWeatherData = (weatherData?.current || {}) as CurrentWeatherData
 
   const isDay = is_day === 1;
   const condition = CONDITIONS[weather_code] ?? UNKNOWN_CONDITION;

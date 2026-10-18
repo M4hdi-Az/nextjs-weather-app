@@ -4,12 +4,11 @@ import DewPoint from "./DewPoint";
 import Precipitation from "./Precipitation";
 import { WeatherData } from "@/types/weather";
 import { getDewPointInfo, getRainInfo, getUvInfo, processWeatherData } from "@/utils/weatherHelpers";
+import { useWeatherStore } from "@/store/useWeatherStore";
 
-export default function WeatherDetails({
-  weatherData,
-}: {
-  weatherData: WeatherData;
-}) {
+export default function WeatherDetails() {
+
+  const weatherData = useWeatherStore((state) => state.weatherData)
 
 const {
     sunrise,

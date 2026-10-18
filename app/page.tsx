@@ -1,33 +1,16 @@
 "use client";
 import WeatherDashboard from "@/components/WeatherDashboard/WeatherDashboard";
 import WeatherSearch from "@/components/WeatherSearch/WeatherSearch";
-import { useCitySearch } from "@/hooks/useCitySearch";
-import { useRecentSearches } from "@/hooks/useRecentSearches";
-import { useWeather } from "@/hooks/useWeather";
-
+import { useWeatherStore } from "@/store/useWeatherStore";
 function page() {
-  const {
-    searchInput,
-    searchInputHandler,
-    suggestedCities,
-    clearSuggestedCities,
-  } = useCitySearch();
-  const { getWeather, weatherData } = useWeather();
 
-  const { recentSearches, addSearch } = useRecentSearches();
-console.log(recentSearches)
+const weatherData = useWeatherStore((state) => state.weatherData)
+
   return (
     <>
       <WeatherSearch
-        searchInput={searchInput}
-        searchInputHandler={searchInputHandler}
-        suggestedCities={suggestedCities}
-        getWeather={getWeather}
-        clearSuggestedCities={clearSuggestedCities}
-        recentSearches={recentSearches}
-        addSearch={addSearch}
       />
-      {weatherData && <WeatherDashboard weatherData={weatherData} />}
+      {weatherData && <WeatherDashboard  />}
     </>
   );
 }

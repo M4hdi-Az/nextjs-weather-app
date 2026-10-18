@@ -1,6 +1,5 @@
 "use client";
 
-import { WeatherData } from "@/types/weather";
 import { formattedHourlyData } from "@/utils/weatherHelpers";
 import {
   ResponsiveContainer,
@@ -12,13 +11,12 @@ import {
   CartesianGrid,
 } from "recharts";
 import { CustomTooltip } from "./CustomTooltip";
+import { useWeatherStore } from "@/store/useWeatherStore";
 
-export default function HourlyForecast({
-  weatherData,
-}: {
-  weatherData: WeatherData;
-}) {
-  const { hourly } = weatherData;
+export default function HourlyForecast() {
+
+  const weatherData = useWeatherStore((state) => state.weatherData)
+  const {hourly} = weatherData as any
   const hourlyData = formattedHourlyData(hourly);
 
   return (

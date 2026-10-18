@@ -50,6 +50,7 @@ export type WeatherData = {
   daily: DailyWeather;
 };
 
+
 export type GetWeatherFn = (lat: number, lon: number) => Promise<void>;
 
 export type HourlyData = {
