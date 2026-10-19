@@ -1,6 +1,6 @@
 "use client";
 import { useWeatherStore } from "@/store/useWeatherStore";
-import AnimatedBackground from "./AnimatedBackground";
+import AnimatedBackground from "../AnimatedBackground";
 import CitySuggestions from "./CitySuggestions";
 import RecentSearches from "./RecentSearches";
 import {MapPinSearch } from "lucide-react";

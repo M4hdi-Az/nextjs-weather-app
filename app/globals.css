@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* انیمیشن حرکت ابر به بالا و پایین (یا افقی) */
 @keyframes float {
   0%, 100% {

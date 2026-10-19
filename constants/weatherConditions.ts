@@ -84,7 +84,7 @@ export interface Theme {
 
 export const THEMES: Record<Group, Theme> = {
   clear: {
-    accentText: "text-blue-600",
+    accentText: "text-blue-600 ",
     accentBg: "bg-blue-600",
     day: tone("bg-sky-100/40", CHIP_DAY),
     night: tone("bg-indigo-100/40", CHIP_NIGHT),

@@ -23,10 +23,6 @@ export default function HourlyForecast() {
     <>
       <SectionHeader title="Hourly Forecast" />
       <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mb-48 mx-auto shadow-lg shadow-sky-500/10">
-        <h3 className="text-lg font-medium text-slate-600 mb-4">
-          Hourly Forecast
-        </h3>
-
         <div className="h-[500px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={hourlyData}>
@@ -35,7 +31,11 @@ export default function HourlyForecast() {
                 stroke="#e2e8f0"
                 opacity={0.5}
               />
-              <XAxis dataKey="time" stroke="#64748b" fontSize={12} />
+              <XAxis
+                dataKey="time"
+                stroke="#282e38"
+                fontSize={12}
+              />
 
               <YAxis yAxisId="temp" stroke="#0284c7" unit="°" fontSize={12} />
 

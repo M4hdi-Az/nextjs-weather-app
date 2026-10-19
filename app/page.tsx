@@ -1,6 +1,6 @@
 "use client";
 import WeatherDashboard from "@/components/WeatherDashboard/WeatherDashboard";
-import WeatherLoading from "@/components/WeatherSearch/WeatherLoading";
+import WeatherLoading from "@/components/WeatherLoading";
 import WeatherSearch from "@/components/WeatherSearch/WeatherSearch";
 import { useWeatherStore } from "@/store/useWeatherStore";
 function page() {

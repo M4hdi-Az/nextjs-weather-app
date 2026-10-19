@@ -76,7 +76,7 @@ export default function DailyForecast() {
 
                 <div className="text-base sm:text-lg font-bold text-slate-800 text-right min-w-[90px]">
                   {Math.round(item.maxTemp)}°{" "}
-                  <span className="text-slate-400 font-normal text-sm sm:text-base">
+                  <span className="text-slate-700 font-normal text-sm sm:text-base">
                     / {Math.round(item.minTemp)}°
                   </span>
                 </div>

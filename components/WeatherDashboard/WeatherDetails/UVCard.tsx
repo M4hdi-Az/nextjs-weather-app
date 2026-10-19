@@ -5,7 +5,7 @@ const UVCard = ({ uvInfo, uv } : { uvInfo: {label: string, note: string, color: 
   const uvPercent = Math.min(Math.max((uv / 11) * 100, 0), 100);
   return (
     <div className="w-[328px] h-[330px] flex flex-col gap-3 rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md">
-      <div className="flex items-center gap-1.5 text-slate-600">
+      <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-900">
         <Sun className="h-8 w-8 text-blue-500" />
         <span className="text-lg font-medium">UV index</span>
       </div>
@@ -19,7 +19,7 @@ const UVCard = ({ uvInfo, uv } : { uvInfo: {label: string, note: string, color: 
               {uvInfo.label}
             </span>
           </div>
-          <p className="text-sm text-slate-600 mt-3">{uvInfo.note}</p>
+          <p className="text-sm text-slate-600 dark:text-slate-900 mt-3">{uvInfo.note}</p>
         </div>
         <div>
           <div
@@ -34,7 +34,7 @@ const UVCard = ({ uvInfo, uv } : { uvInfo: {label: string, note: string, color: 
               style={{ left: `${uvPercent}%` }}
             />
           </div>
-          <div className="flex justify-between text-sm text-slate-500 mt-2">
+          <div className="flex justify-between text-sm text-slate-500 dark:text-slate-800 mt-2">
             <span>0</span>
             <span>11+</span>
           </div>

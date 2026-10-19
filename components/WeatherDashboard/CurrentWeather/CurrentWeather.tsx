@@ -114,7 +114,7 @@ const CurrentWeather = () => {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-3">
         {/* Wind */}
         <div className="col-span-2 sm:col-span-3 rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 shadow-lg shadow-sky-500/10 text-slate-800">
-          <div className="flex items-center gap-2 text-slate-600">
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-900">
             <Wind className="size-4 text-blue-600" />
             <span className="text-sm font-medium">
               Wind speed and direction
@@ -127,12 +127,12 @@ const CurrentWeather = () => {
                 <span className="text-3xl font-bold text-sky-950">
                   {formatNumber(wind_speed_10m)}
                 </span>
-                <span className="text-sm font-medium text-slate-600">km/h</span>
+                <span className="text-sm font-medium text-slate-600 dark:text-slate-900">km/h</span>
               </div>
-              <p className="text-sm text-slate-600 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-900 mt-1">
                 {describeWind(wind_speed_10m)}
               </p>
-              <p className="mt-2 text-sm text-slate-700">
+              <p className="mt-2 text-sm text-slate-700 dark:text-slate-950">
                 from {direction.name}
               </p>
             </div>
@@ -147,7 +147,7 @@ const CurrentWeather = () => {
 
         {/* Humidity */}
         <div className="flex flex-col justify-between rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 shadow-lg shadow-sky-500/10 text-slate-800">
-          <div className="flex items-center gap-2 text-slate-600">
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-900">
             <Droplets className="size-4 text-sky-600" />
             <span className="text-sm font-medium">Humidity</span>
           </div>
@@ -157,9 +157,9 @@ const CurrentWeather = () => {
               <span className="text-3xl font-bold text-sky-950">
                 {formatNumber(humidity)}
               </span>
-              <span className="text-sm font-medium text-slate-600">%</span>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-900">%</span>
             </div>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-900 mt-1">
               {describeHumidity(humidity)}
             </p>
           </div>
@@ -183,7 +183,7 @@ const CurrentWeather = () => {
 
         {/* Pressure */}
         <div className="flex flex-col justify-between rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 shadow-lg shadow-sky-500/10 text-slate-800">
-          <div className="flex items-center gap-2 text-slate-600">
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-900">
             <Gauge className="size-4 text-indigo-600" />
             <span className="text-sm font-medium">Surface pressure</span>
           </div>
@@ -193,9 +193,9 @@ const CurrentWeather = () => {
               <span className="text-3xl font-bold text-sky-950 font-sans">
                 {formatNumber(surface_pressure)}
               </span>
-              <span className="text-sm font-medium text-slate-600">hPa</span>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-900">hPa</span>
             </div>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-900 mt-1">
               {describePressure(surface_pressure)}
             </p>
           </div>
@@ -208,7 +208,7 @@ const CurrentWeather = () => {
                 style={{ left: `${pressureMarker}%` }}
               />
             </div>
-            <div className="mt-2 flex justify-between text-xs text-slate-700">
+            <div className="mt-2 flex justify-between text-xs text-slate-950">
               <span>low</span>
               <span>high</span>
             </div>
@@ -217,7 +217,7 @@ const CurrentWeather = () => {
 
         {/* Visibility */}
         <div className="flex flex-col justify-between rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 shadow-lg shadow-sky-500/10 text-slate-800 col-span-2 sm:col-span-1">
-          <div className="flex items-center gap-2 text-slate-600">
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-900">
             <Eye className="size-4 text-teal-600" />
             <span className="text-sm font-medium">visibility</span>
           </div>
@@ -227,9 +227,9 @@ const CurrentWeather = () => {
               <span className="text-3xl font-bold text-sky-950">
                 {formatNumber(visibilityKm, 1)}
               </span>
-              <span className="text-sm font-medium text-slate-600">km</span>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-900">km</span>
             </div>
-            <p className="text-sm text-slate-600 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-900 mt-1">
               {visibilityRating.label}
             </p>
           </div>
