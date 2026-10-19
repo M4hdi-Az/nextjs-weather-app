@@ -12,69 +12,72 @@ import {
 } from "recharts";
 import { CustomTooltip } from "./CustomTooltip";
 import { useWeatherStore } from "@/store/useWeatherStore";
+import SectionHeader from "@/components/common/SectionHeader";
 
 export default function HourlyForecast() {
-
-  const weatherData = useWeatherStore((state) => state.weatherData)
-  const {hourly} = weatherData as any
+  const weatherData = useWeatherStore((state) => state.weatherData);
+  const { hourly } = weatherData as any;
   const hourlyData = formattedHourlyData(hourly);
 
   return (
-    <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mb-48 mx-auto shadow-lg shadow-sky-500/10">
-      <h3 className="text-lg font-medium text-slate-600 mb-4">
-        Hourly Forecast
-      </h3>
+    <>
+      <SectionHeader title="Hourly Forecast" />
+      <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mb-48 mx-auto shadow-lg shadow-sky-500/10">
+        <h3 className="text-lg font-medium text-slate-600 mb-4">
+          Hourly Forecast
+        </h3>
 
-      <div className="h-[500px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={hourlyData}>
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="#e2e8f0"
-              opacity={0.5}
-            />
-            <XAxis dataKey="time" stroke="#64748b" fontSize={12} />
+        <div className="h-[500px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={hourlyData}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e2e8f0"
+                opacity={0.5}
+              />
+              <XAxis dataKey="time" stroke="#64748b" fontSize={12} />
 
-            <YAxis yAxisId="temp" stroke="#0284c7" unit="°" fontSize={12} />
+              <YAxis yAxisId="temp" stroke="#0284c7" unit="°" fontSize={12} />
 
-            <YAxis
-              yAxisId="rain"
-              orientation="right"
-              stroke="#0ea5e9"
-              unit="%"
-              domain={[0, 100]}
-              fontSize={12}
-            />
+              <YAxis
+                yAxisId="rain"
+                orientation="right"
+                stroke="#0ea5e9"
+                unit="%"
+                domain={[0, 100]}
+                fontSize={12}
+              />
 
-            <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip />} />
 
-            <Line
-              yAxisId="temp"
-              type="monotone"
-              dataKey="temp"
-              stroke="#0284c7"
-              strokeWidth={3}
-              dot={false}
-              isAnimationActive={true}
-              animationDuration={2500}
-              animationEasing="ease-in-out"
-            />
+              <Line
+                yAxisId="temp"
+                type="monotone"
+                dataKey="temp"
+                stroke="#0284c7"
+                strokeWidth={3}
+                dot={false}
+                isAnimationActive={true}
+                animationDuration={2500}
+                animationEasing="ease-in-out"
+              />
 
-            <Line
-              yAxisId="rain"
-              type="monotone"
-              dataKey="precipitation"
-              stroke="#38bdf8"
-              strokeWidth={2}
-              strokeDasharray="4 4"
-              dot={false}
-              isAnimationActive={true}
-              animationDuration={2500}
-              animationEasing="ease-in-out"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </section>
+              <Line
+                yAxisId="rain"
+                type="monotone"
+                dataKey="precipitation"
+                stroke="#38bdf8"
+                strokeWidth={2}
+                strokeDasharray="4 4"
+                dot={false}
+                isAnimationActive={true}
+                animationDuration={2500}
+                animationEasing="ease-in-out"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
+    </>
   );
 }

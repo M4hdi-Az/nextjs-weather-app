@@ -22,7 +22,6 @@ interface WeatherStore {
 export const useWeatherStore = create<WeatherStore>()(
   persist(
     (set, get) => ({
-      // ۱. استیت‌ها و توابع مربوط به سرچ شهر
       searchInput: "",
       suggestedCities: [],
       searchTimer: null,
@@ -30,7 +29,6 @@ export const useWeatherStore = create<WeatherStore>()(
       searchInputHandler: (value: string) => {
         set({ searchInput: value });
         
-        // پاک کردن تایمر قبلی (Debounce)
         const oldTimer = get().searchTimer;
         if (oldTimer) clearTimeout(oldTimer);
 
@@ -39,7 +37,6 @@ export const useWeatherStore = create<WeatherStore>()(
           return;
         }
 
-        // ایجاد تایمر جدید مشابه هوک خودتان
         const timer = setTimeout(async () => {
           try {
             const data = await searchCities(value);
@@ -55,7 +52,6 @@ export const useWeatherStore = create<WeatherStore>()(
 
       clearSuggestedCities: () => set({ suggestedCities: [] }),
 
-      // ۲. استیت‌ها و توابع مربوط به دریافت هواشناسی
       weatherData: null,
       selectedCity: null,
 
@@ -66,9 +62,8 @@ export const useWeatherStore = create<WeatherStore>()(
           const data = await fetchWeatherData(lat, lon);
           set({ weatherData: data });
 
-          // اگر نام شهر هم ارسال شده بود، به عنوان شهر انتخاب‌شده ثبت و به تاریخچه اضافه شود
           if (cityName) {
-            set({ selectedCity: { name: cityName, lat, lon } });
+            set({ selectedCity: { name: cityName, lat, lon } })
             get().addSearch(cityName, lat, lon);
           }
         } catch (error) {
@@ -76,7 +71,6 @@ export const useWeatherStore = create<WeatherStore>()(
         }
       },
 
-      // ۳. تاریخچه جستجوها (ذخیره ۵ سرچ آخر)
       recentSearches: [],
 
       addSearch: (name: string, lat: number, lon: number) => {
@@ -89,7 +83,7 @@ export const useWeatherStore = create<WeatherStore>()(
       },
     }),
     {
-      name: "weather-store-storage", // ذخیره خودکار تاریخچه در localStorage
+      name: "weather-store-storage",
       partialize: (state) => ({ recentSearches: state.recentSearches }),
     }
   )

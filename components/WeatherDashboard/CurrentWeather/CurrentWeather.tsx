@@ -21,10 +21,12 @@ import {
   rateVisibility,
 } from "@/utils/weatherHelpers";
 import { useWeatherStore } from "@/store/useWeatherStore";
+import SectionHeader from "@/components/common/SectionHeader";
 
 const CurrentWeather = () => {
 
   const weatherData = useWeatherStore((state) => state.weatherData)
+  const selectedCity = useWeatherStore((state) => state.selectedCity)
 
   const {
     apparent_temperature,
@@ -64,11 +66,15 @@ const CurrentWeather = () => {
   const visibilityKm = visibility / 1000;
   const visibilityRating = rateVisibility(visibilityKm);
 
-  return (
+  return (<>
+
+    <SectionHeader title="Overview"/>
     <section
       aria-label="Current weather"
       className="mx-auto mb-48 grid w-full max-w-5xl gap-4 lg:grid-cols-5"
     >
+
+      
       {/* Hero */}
       <div className="flex min-h-72 flex-col justify-between gap-10 rounded-[2rem] p-6 sm:p-8 lg:col-span-2 bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-sky-500/10 text-slate-800">
         <div className="flex items-start justify-between gap-4">
@@ -234,7 +240,7 @@ const CurrentWeather = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section>  </>
   );
 };
 

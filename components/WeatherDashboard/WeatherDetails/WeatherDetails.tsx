@@ -5,6 +5,7 @@ import Precipitation from "./Precipitation";
 import { WeatherData } from "@/types/weather";
 import { getDewPointInfo, getRainInfo, getUvInfo, processWeatherData } from "@/utils/weatherHelpers";
 import { useWeatherStore } from "@/store/useWeatherStore";
+import SectionHeader from "@/components/common/SectionHeader";
 
 export default function WeatherDetails() {
 
@@ -25,12 +26,13 @@ const {
   const dewInfo = getDewPointInfo(dew);
   const rainInfo = getRainInfo(precipitation);
 
-  return (
+  return (<>
+  <SectionHeader title="More Info" />
     <section className="mx-auto flex justify-center mb-40 max-w-[1380px] flex-wrap gap-4">
       <SunArc progress={dayProgress} sunrise={sunrise} sunset={sunset} />
       <UVCard uvInfo={uvInfo} uv={uv} />
       <DewPoint dew={dew} dewInfo={dewInfo} />
       <Precipitation rainInfo={rainInfo} precipitation={precipitation} />
-    </section>
+    </section></>
   );
 }
