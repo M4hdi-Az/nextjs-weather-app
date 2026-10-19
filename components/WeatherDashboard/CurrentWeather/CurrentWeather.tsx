@@ -22,11 +22,21 @@ import {
 } from "@/utils/weatherHelpers";
 import { useWeatherStore } from "@/store/useWeatherStore";
 import SectionHeader from "@/components/common/SectionHeader";
+import { useEffect, useRef } from "react";
 
 const CurrentWeather = () => {
 
   const weatherData = useWeatherStore((state) => state.weatherData)
-  const selectedCity = useWeatherStore((state) => state.selectedCity)
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (weatherData && sectionRef.current) {
+      sectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start", // صفحه طوری اسکرول شود که بالای این بخش در بالای صفحه قرار بگیرد
+      });
+    }
+  }, [weatherData]);
 
   const {
     apparent_temperature,
@@ -76,7 +86,7 @@ const CurrentWeather = () => {
 
       
       {/* Hero */}
-      <div className="flex min-h-72 flex-col justify-between gap-10 rounded-[2rem] p-6 sm:p-8 lg:col-span-2 bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-sky-500/10 text-slate-800">
+      <div ref={sectionRef}  className="flex min-h-72 flex-col justify-between gap-10 rounded-[2rem] p-6 sm:p-8 lg:col-span-2 bg-white/30 backdrop-blur-md border border-white/50 shadow-lg shadow-sky-500/10 text-slate-800 scroll-mt-32">
         <div className="flex items-start justify-between gap-4">
           <h2 className="sr-only">Current weather</h2>
           <ConditionIcon

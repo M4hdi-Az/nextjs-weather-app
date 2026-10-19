@@ -1,5 +1,6 @@
 
 function SectionHeader({title}: {title: string}) {
+  
   return (
     
     <div className="relative mx-28 mb-20 ">
