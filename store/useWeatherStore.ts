@@ -11,6 +11,7 @@ interface WeatherStore {
   clearSuggestedCities: () => void;
   searchTimer: NodeJS.Timeout | null;
 
+  isLoading: boolean;
   weatherData: WeatherData | null | undefined;
   getWeather: (lat: number, lon: number, cityName?: string) => Promise<void>;
 
@@ -25,6 +26,7 @@ export const useWeatherStore = create<WeatherStore>()(
       searchInput: "",
       suggestedCities: [],
       searchTimer: null,
+      isLoading: false,
 
       searchInputHandler: (value: string) => {
         set({ searchInput: value });
@@ -57,7 +59,7 @@ export const useWeatherStore = create<WeatherStore>()(
 
       getWeather: async (lat: number, lon: number, cityName?: string) => {
         if (!lat && !lon) return;
-
+        set({ isLoading: true });
         try {
           const data = await fetchWeatherData(lat, lon);
           set({ weatherData: data });
@@ -68,6 +70,8 @@ export const useWeatherStore = create<WeatherStore>()(
           }
         } catch (error) {
           console.error("Error fetching weather data:", error);
+        } finally {
+          set({ isLoading: false }); 
         }
       },
 
