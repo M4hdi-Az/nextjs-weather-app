@@ -1,4 +1,3 @@
-
 import CurrentWeather from './CurrentWeather/CurrentWeather';
 import HourlyForecast from './HourlyForecast/HourlyForecast';
 import DailyForecast from './DailyForecast/DailyForecast';

@@ -32,3 +32,46 @@
 .animate-cloud-slow {
   animation: float 4s ease-in-out infinite; /* شناور شدن سریع در جای خود */
 }
+
+ @keyframes weather-rain-fall {
+          from {
+            transform: translate3d(0, -12vh, 0);
+          }
+          to {
+            transform: translate3d(0, 112vh, 0);
+          }
+        }
+        @keyframes weather-snow-fall {
+          from {
+            transform: translate3d(0, -8vh, 0);
+          }
+          to {
+            transform: translate3d(0, 108vh, 0);
+          }
+        }
+        @keyframes weather-snow-sway {
+          from {
+            transform: translate3d(calc(var(--sway) * -1), 0, 0);
+          }
+          to {
+            transform: translate3d(var(--sway), 0, 0);
+          }
+        }
+        .animate-rain {
+          animation-name: weather-rain-fall;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          will-change: transform;
+        }
+        .animate-snow {
+          animation-name: weather-snow-fall;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          will-change: transform;
+        }
+        .animate-snow-sway {
+          animation-name: weather-snow-sway;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
