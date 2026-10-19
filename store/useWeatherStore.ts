@@ -68,6 +68,7 @@ export const useWeatherStore = create<WeatherStore>()(
             set({ selectedCity: { name: cityName, lat, lon } })
             get().addSearch(cityName, lat, lon);
           }
+          set({searchInput: ""})
         } catch (error) {
           console.error("Error fetching weather data:", error);
         } finally {

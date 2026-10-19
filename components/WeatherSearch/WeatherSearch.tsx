@@ -33,8 +33,8 @@ const WeatherSearch = () => {
             value={searchInput}
           />
 
-          <div onClick={getLocation} className="flex justify-center items-center border-l-2 border-dashed border-l-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
-           <MapPinSearch className="w-8 h-8 text-blue-500 transition-transform group-hover:scale-110" />
+          <div onClick={getLocation} className="hover:*:scale-120 flex justify-center items-center border-l-2 border-dashed border-l-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
+           <MapPinSearch className="w-8 h-8 text-blue-500 transition-transform " />
           </div>
           {suggestedCities.length && (
             <CitySuggestions/>
