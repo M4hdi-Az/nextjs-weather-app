@@ -3,6 +3,8 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import AnimatedBackground from "./AnimatedBackground";
 import CitySuggestions from "./CitySuggestions";
 import RecentSearches from "./RecentSearches";
+import {MapPinSearch } from "lucide-react";
+import { useGeoLocation } from "@/hooks/useGeoLocation";
 
 const WeatherSearch = () => {
 
@@ -10,6 +12,8 @@ const WeatherSearch = () => {
   const searchInput = useWeatherStore((state) => state.searchInput);
   const suggestedCities = useWeatherStore((state) => state.suggestedCities);
   const recentSearches = useWeatherStore((state) => state.recentSearches);
+
+  const { getLocation, isLoading } = useGeoLocation();
 
   return (
     <>
@@ -29,8 +33,8 @@ const WeatherSearch = () => {
             value={searchInput}
           />
 
-          <div className="flex justify-center items-center bg-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
-            <span className="text-white">find me</span>
+          <div onClick={getLocation} className="flex justify-center items-center border-l-2 border-dashed border-l-blue-400 absolute right-0 h-full w-28 rounded-r-2xl text-center cursor-pointer">
+           <MapPinSearch className="w-8 h-8 text-blue-500 transition-transform group-hover:scale-110" />
           </div>
           {suggestedCities.length && (
             <CitySuggestions/>
