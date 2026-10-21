@@ -3,7 +3,7 @@ import DynamicSunArcChart from "./DynamicSunArcChart";
 
 const SunArc = ({progress, sunrise, sunset}: {progress: number, sunrise: string, sunset: string}) => {
   return (
-    <div className="w-[328px] h-[330px] flex flex-col gap-8 rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md">
+    <div className="w-[328px] h-[330px] flex flex-col gap-8 rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md max-[370px]:m-6">
       <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-900">
         <SunMoon className="h-8 w-8 text-blue-500" />
         <span className="text-lg font-medium">Sunrise & sunset</span>

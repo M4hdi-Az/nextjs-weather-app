@@ -33,7 +33,7 @@ const CurrentWeather = () => {
     if (weatherData && sectionRef.current) {
       sectionRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "start", // صفحه طوری اسکرول شود که بالای این بخش در بالای صفحه قرار بگیرد
+        block: "start", 
       });
     }
   }, [weatherData]);
@@ -81,7 +81,7 @@ const CurrentWeather = () => {
     <SectionHeader title="Overview"/>
     <section
       aria-label="Current weather"
-      className="mx-auto mb-48 grid w-full max-w-5xl gap-4 lg:grid-cols-5"
+      className="mx-auto mb-48 grid w-full max-w-5xl max-[]: gap-4 lg:grid-cols-5 "
     >
 
       

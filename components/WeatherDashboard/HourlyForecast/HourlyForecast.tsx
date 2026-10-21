@@ -22,14 +22,14 @@ export default function HourlyForecast() {
   return (
     <>
       <SectionHeader title="Hourly Forecast" />
-      <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 mb-48 mx-auto shadow-lg shadow-sky-500/10">
-        <div className="h-[500px] w-full">
+      <section className="max-w-7xl rounded-3xl bg-white/30 backdrop-blur-md border border-white/50 p-6 max-[970]:px-0 max-[970]:py-2 mb-48 mx-auto shadow-lg shadow-sky-500/10">
+        <div className="h-[500px] w-full max-[900]:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={hourlyData}>
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="#e2e8f0"
-                opacity={0.5}
+                opacity={0.5}     
               />
               <XAxis
                 dataKey="time"
@@ -37,7 +37,7 @@ export default function HourlyForecast() {
                 fontSize={12}
               />
 
-              <YAxis yAxisId="temp" stroke="#0284c7" unit="°" fontSize={12} />
+              <YAxis yAxisId="temp" stroke="#0284c7" unit="°" fontSize={20} />
 
               <YAxis
                 yAxisId="rain"

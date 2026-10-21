@@ -21,7 +21,7 @@ export default function DailyForecast() {
     <>
       {" "}
       <SectionHeader title="Daily Forecast" />{" "}
-      <div className="max-w-5xl  rounded-[2rem] border border-white/40 bg-white/30 p-6 mb-48 mx-auto sm:p-7 text-slate-700 shadow-xl backdrop-blur-md">
+      <div className="max-w-5xl  rounded-[2rem] border border-white/40 bg-white/30 p-6 mb-48 mx-auto sm:p-7 text-slate-700 shadow-xl backdrop-blur-md max-[1020px]:mx-8 max-[400px]:mx-2">
         <h3 className="text-base sm:text-lg font-semibold text-slate-800 mb-5 px-1">
           7-Day Forecast
         </h3>
@@ -47,7 +47,7 @@ export default function DailyForecast() {
             return (
               <div
                 key={item.date || index}
-                className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/20 hover:bg-white/30 transition-all border border-white/25 shadow-sm"
+                className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-white/20 hover:bg-white/30 transition-all border border-white/25 shadow-sm "
               >
                 <div className="w-24 text-base sm:text-lg font-semibold text-slate-800 capitalize">
                   {item.day}
@@ -74,7 +74,7 @@ export default function DailyForecast() {
                   </div>
                 </div>
 
-                <div className="text-base sm:text-lg font-bold text-slate-800 text-right min-w-[90px]">
+                <div className="text-base sm:text-lg font-bold text-slate-800 text-right w-[90px]">
                   {Math.round(item.maxTemp)}°{" "}
                   <span className="text-slate-700 font-normal text-sm sm:text-base">
                     / {Math.round(item.minTemp)}°

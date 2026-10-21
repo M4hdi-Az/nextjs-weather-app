@@ -3,7 +3,7 @@ import { CloudRain } from "lucide-react";
 const Precipitation = ({precipitation, rainInfo} : {precipitation : number, rainInfo: {label: string, note: string}}) => {
   const rainPercent = Math.min(Math.max((precipitation / 20) * 100, 0), 100);
   return (
-    <div className="w-[328px] h-[330px] flex flex-col gap-3  rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md">
+    <div className="w-[328px] h-[330px] flex flex-col gap-3  rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md max-[370px]:m-6">
       <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-900">
         <CloudRain className="h-8 w-8 text-blue-500" />
         <span className="text-lg font-medium">Precipitation</span>

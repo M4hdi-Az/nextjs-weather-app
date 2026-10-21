@@ -6,7 +6,7 @@ const UVCard = ({dewInfo, dew}: {dewInfo: {label: string, color: string, note: s
 const maxDew = 30;
 const dewPercent = Math.min(Math.max(((dew - minDew) / (maxDew - minDew)) * 100, 0), 100);
   return (
-    <div className="w-[328px] h-[330px] flex flex-col gap-3 rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md">
+    <div className="w-[328px] h-[330px] flex flex-col gap-3 rounded-3xl border border-white/40 bg-white/30 p-5 shadow-lg backdrop-blur-md max-[370px]:m-6">
       <div className="flex items-center gap-1.5 text-slate-600  dark:text-slate-900">
         <Droplets className="h-8 w-8 text-sky-500" />
         <span className="text-lg font-medium">Dew point</span>
