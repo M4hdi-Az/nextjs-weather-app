@@ -2,6 +2,7 @@
 
 A modern, responsive Weather Dashboard built with Next.js, Tailwind CSS, and Zustand. This application allows users to check real-time weather conditions for different cities with a sleek user interface and smooth theme synchronization.
 
+Live Demo: https://nextjs-weather-app-one-iota.vercel.app/
 ---
 
 ## 🚀 Features
